@@ -1,17 +1,15 @@
 <template>
     <div>
       <div v-for="(todo, index) in todos" :key="index" class="item">
-        <div class="item-main">
-          <label>
-            <input
-              type="checkbox"
-              @click="sendCompletedIndex(index)" >
-              <span
-                :class="[{ 'item-done': todo.complete }]">
-                {{ todo.text }}
-              </span>
-          </label>
-        </div>
+        <label class="item-main">
+          <input
+            type="checkbox"
+            @click="sendCompletedIndex(index)" >
+            <span
+              :class="[{ 'item-done': todo.complete }]">
+              {{ todo.text }}
+            </span>
+        </label>
         <button
           class="btn -delete item-delete"
           @click="sendDeletedIndex(index)" >
@@ -43,7 +41,15 @@ export default {
     margin: 20px 0;
   }
   .item-main {
-
+    width: 100%;
+    text-align: left;
+    line-height: 38px;
+    cursor: pointer;
+    border-radius: 3px;
+    padding: 0 5px;
+  }
+  .item-main:hover {
+    background-color: rgba(0,0,0,.03);
   }
   .item-delete {
 

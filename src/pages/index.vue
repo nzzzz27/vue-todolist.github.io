@@ -61,7 +61,6 @@ export default {
   * {
     box-sizing: border-box;
   }
-
   .btn {
     cursor: pointer;
     font-size: 16px;
