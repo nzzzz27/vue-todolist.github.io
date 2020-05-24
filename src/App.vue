@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view/> <!-- router/のファイルを読み込む -->
+    <router-view/>
   </div>
 </template>
 

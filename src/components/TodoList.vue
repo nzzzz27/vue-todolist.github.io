@@ -1,42 +1,54 @@
 <template>
-    <b-container>
-        <b-row :key="index" v-for="(todo, index) in todos" class="mt-5">
-            <b-col cols="8" :class="[{line: todo.complete}, 'text-left']">
-                <h5>{{ todo.text }}</h5>
-            </b-col>
-            <b-col cols="4" class="text-right">
-                <b-button
-                    @click="handleCompleteTodo(index)"
-                    :variant="todo.complete ? '' : 'success'">
-                    {{ todo.complete ? '完了' : '未完了' }}
-                </b-button>
-                <b-button
-                    @click="handleDeleteTodo(index)"
-                    :variant="'danger'">
-                    削除
-                </b-button>
-            </b-col>
-        </b-row>
-    </b-container>
+    <div>
+      <div v-for="(todo, index) in todos" :key="index" class="item">
+        <div class="item-main">
+          <label>
+            <input
+              type="checkbox"
+              @click="sendCompletedIndex(index)" >
+              <span
+                :class="[{ 'item-done': todo.complete }]">
+                {{ todo.text }}
+              </span>
+          </label>
+        </div>
+        <button
+          class="btn -delete item-delete"
+          @click="sendDeletedIndex(index)" >
+          <i class="material-icons">delete_outline</i>
+        </button>
+      </div>
+    </div>
 </template>
 
 <script>
 export default {
   name: 'TodoList',
-  props: ['todos'], // 親(pages/index.vue)から子にデータを渡す
+  props: ['todos'],
   methods: {
-    handleDeleteTodo(index) {
-      this.$emit('handleParentDeleteTodo', index);
+    sendCompletedIndex(index) {
+      this.$emit('completedIndex', index);
     },
-    handleCompleteTodo(index) {
-      this.$emit('handleParentCompleteTodo', index);
+    sendDeletedIndex(index) {
+      this.$emit('deletedIndex', index);
     },
   },
 };
 </script>
 
 <style scoped>
-    .line {
-        text-decoration: line-through;
-    }
+  .item {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+  }
+  .item-main {
+
+  }
+  .item-delete {
+
+  }
+  .item-done {
+    text-decoration: line-through;
+  }
 </style>

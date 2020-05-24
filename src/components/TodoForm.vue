@@ -1,12 +1,13 @@
 <template>
-    <b-container>
-        <b-input-group>
-            <b-form-input type="text" v-model="value" />
-            <b-input-group-append>
-                <b-button variant="info" @click="handleAddTodo()">送信</b-button>
-            </b-input-group-append>
-        </b-input-group>
-    </b-container>
+  <div class="form-wrap">
+    <input type="text" v-model="value" class="form">
+    <button
+      class="btn -send"
+      @click="handleValue()"
+      v-on:keyup.enter="handleValue()" >
+      送信
+    </button>
+  </div>
 </template>
 
 <script>
@@ -18,9 +19,8 @@ export default {
     };
   },
   methods: {
-    handleAddTodo() {
-      this.$emit('handleParentAddTodo', this.value);
-      //  $emitで、子から親（pages/index.vue)へデータを伝達する
+    handleValue() {
+      this.$emit('sendValue', this.value);
       this.value = '';
     },
   },
@@ -28,5 +28,20 @@ export default {
 </script>
 
 <style scoped>
+.form-wrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 38px;
+}
+.form {
+  flex: 1 1 100%;
+  padding: 5px;
+  height: 100%;
+  border-radius: 3px 0 0 3px;
+  border: 1px solid #ced4da;
+  border-right: none;
+  font-size: 16px;
+}
 
 </style>
