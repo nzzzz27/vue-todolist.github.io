@@ -7,17 +7,20 @@
                 v-for="(tabname, index) in tabnames"
                 :key="index"
                 class="tab-name"
+                :class="{ isActive }"
                 @click="getTabindex(index)"
                 >
                 {{ tabname }}
                 </li>
             </ul>
 
-            <component
-                v-bind:is="currentTab"
-                class="tab-content"
-            >
-            </component>
+            <keep-alive> <!-- データ破棄されても内容をkeepする -->
+              <component
+                  v-bind:is="currentTab"
+                  class="tab-content"
+              >
+              </component>
+            </keep-alive>
         </main>
         <footer class="footer">
             <i class="material-icons">keyboard_arrow_left</i>
@@ -41,6 +44,7 @@ export default {
   data() {
     return {
       current: 'about',
+      isActive: true,
       tabnames: {
         about: 'About',
         price: 'Price',
@@ -67,10 +71,10 @@ export default {
     list-style: none;
     width: 33%;
     padding: 5px 0;
-    color: white;
+    color: #2c3e50;
     font-size: 16px;
     font-weight: bold;
-    background-color: #2c3e50;
+    background-color: white;
     cursor: pointer;
   }
   .tab-name:not(:last-child) {
@@ -78,6 +82,10 @@ export default {
   }
   .tab-name:hover {
     opacity: .9;
+  }
+  .tab-name.isActive {
+    color: white;
+    background-color: #2c3e50;
   }
   .tab-content {
     margin-top: 5px;
