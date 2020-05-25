@@ -38,21 +38,23 @@ export default {
   .item {
     display: flex;
     justify-content: space-between;
-    margin: 20px 0;
+    margin: 15px 0;
   }
   .item-main {
+    resize: none;
+
     width: 100%;
     text-align: left;
+    font-size: 16px;
+    letter-spacing: .1em;
     line-height: 38px;
     cursor: pointer;
+    border: none;
     border-radius: 3px;
     padding: 0 5px;
   }
   .item-main:hover {
     background-color: rgba(0,0,0,.03);
-  }
-  .item-delete {
-
   }
   .item-done {
     text-decoration: line-through;

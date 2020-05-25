@@ -1,10 +1,15 @@
 <template>
   <div class="form-wrap">
-    <input type="text" v-model="value" class="form">
+    <input
+      type="text"
+      class="form"
+      v-model="value"
+      v-on:keydown.enter="handleValue()"
+    >
     <button
       class="btn -send"
       @click="handleValue()"
-      v-on:keyup.enter="handleValue()" >
+    >
       送信
     </button>
   </div>
