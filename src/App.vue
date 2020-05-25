@@ -19,6 +19,9 @@ ul {
   margin: 0;
   padding-left: 0;
 }
+li {
+  list-style: none;
+}
 .footer {
   margin-top: 100px;
   text-align: left;

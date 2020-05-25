@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="l-container">
         <main>
             <h1>Tab Menu</h1>
             <ul>
