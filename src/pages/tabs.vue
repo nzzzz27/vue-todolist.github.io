@@ -1,26 +1,26 @@
 <template>
     <div class="l-container">
         <main>
-            <h1>Tab Menu</h1>
-            <ul>
-                <li
-                v-for="(tabname, index) in tabnames"
-                :key="index"
-                class="tab-name"
-                :class="{ isActive }"
-                @click="getTabindex(index)"
-                >
-                {{ tabname }}
-                </li>
-            </ul>
+          <h1>Tab Menu</h1>
+          <ul>
+            <li
+            v-for="(tabname, index) of tabnames"
+            :key="index"
+            class="tab-name"
+            @click="getTabindex(tabname)"
+            :class="[{ isActive: tabname.id == current }]"
+            >
+            {{ tabname.id }}
+            </li>
+          </ul>
 
-            <keep-alive> <!-- データ破棄されても内容をkeepする -->
-              <component
-                  v-bind:is="currentTab"
-                  class="tab-content"
-              >
-              </component>
-            </keep-alive>
+          <keep-alive> <!-- データ破棄されても内容をkeepする -->
+            <component
+                v-bind:is="currentTab"
+                class="tab-content"
+            >
+            </component>
+          </keep-alive>
         </main>
         <footer class="footer">
             <i class="material-icons">keyboard_arrow_left</i>
@@ -44,22 +44,21 @@ export default {
   data() {
     return {
       current: 'about',
-      isActive: true,
-      tabnames: {
-        about: 'About',
-        price: 'Price',
-        access: 'Access',
-      },
+      tabnames: [
+        { id: 'about', about: 'About' },
+        { id: 'price', price: 'Price' },
+        { id: 'access', access: 'Access' },
+      ],
     };
-  },
-  methods: {
-    getTabindex(index) {
-      this.current = index;
-    },
   },
   computed: {
     currentTab() {
       return `tab-${this.current}`;
+    },
+  },
+  methods: {
+    getTabindex(tabname) {
+      this.current = tabname.id;
     },
   },
 };
@@ -72,9 +71,10 @@ export default {
     width: 33%;
     padding: 5px 0;
     color: #2c3e50;
+    opacity: .7;
     font-size: 16px;
     font-weight: bold;
-    background-color: white;
+    background-color: #bbc3cc;
     cursor: pointer;
   }
   .tab-name:not(:last-child) {
@@ -86,6 +86,7 @@ export default {
   .tab-name.isActive {
     color: white;
     background-color: #2c3e50;
+    opacity: 1;
   }
   .tab-content {
     margin-top: 5px;
